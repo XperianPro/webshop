@@ -18,7 +18,7 @@ function db_query( $sql )
   } catch (PDOException $e) {
     echo 'Connection failed: '.$e->getMessage();
   }
-  $lista = $baza->query( $sql );
+  $baza->query( $sql );
 }
 
  ?>
