@@ -8,8 +8,7 @@ function db_execute( $sql )
   }
   $lista = $baza->prepare( $sql );
   $lista->execute();
-  $result = $lista->fetchAll();
-  return $result;
+  return $lista->fetchAll();
 }
 function db_query( $sql )
 {
