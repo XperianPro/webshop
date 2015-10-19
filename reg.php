@@ -13,7 +13,7 @@ if( isset( $_POST['mail'] ) and isset( $_POST['usern'] ) and isset( $_POST['lozi
 {
   include_once( 'functions.php' );
   $md5 = md5( $_POST['mail'] );
-  db_execute( "INSERT INTO users (email,md,username,password)  VALUES ('".$_POST['mail']."','".$md5."','".$_POST['usern']."','".$_POST['lozinka']."');" );
+  db_query( "INSERT INTO users (email,md,username,password)  VALUES ('".$_POST['mail']."','".$md5."','".$_POST['usern']."','".$_POST['lozinka']."');" );
   header("Location: index.php");
   die();
 }
