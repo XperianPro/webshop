@@ -48,7 +48,7 @@ INSERT INTO `items` (`name`, `price`, `number`, `prodano`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NULL,
   `email` text COLLATE utf8_bin NOT NULL,
   `md` varchar(40) COLLATE utf8_bin NOT NULL,
   `username` text COLLATE utf8_bin NOT NULL,
