@@ -7,6 +7,7 @@ include( 'login.php' );
 include( 'shop.php' );
 if( login_check() )
 {
+html_mod();
 item_list();
 kupi();
 }
