@@ -2,7 +2,7 @@
 include_once( 'functions.php' );
 function html_mod() //estetika
 {
-  echo "<h1>Banana shop</h1>"
+  echo "<h1>Banana shop</h1>";
 }
 
 function item_list()
