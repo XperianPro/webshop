@@ -36,7 +36,6 @@ function login()
     }
     else {
       echo "Kriva lozinka ili e-mail!";
-      var_dump($check);
     }
   }
 
