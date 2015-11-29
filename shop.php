@@ -15,8 +15,10 @@ function item_list()
     echo '<td><form method="post"><button type="submit" value="'.$row['name'].'" name="kupi">Kupi!</button></form></td></tr>'; // gumb
   }
   echo '</table>'; //kraj tablice
-
-
+  echo '<br/><br/>
+  <form method="POST">
+  <input type="submit" name="logout" value="Odjava"/>
+  </form>';
 }
 
 function kupi()
