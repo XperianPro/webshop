@@ -9,7 +9,8 @@ include( 'shop.php' );
 if ( $_POST['logout'] )
 {
   setcookie( "login","",time()-60*60 );
-  setcookie( "username","",time()-60*60 );  
+  setcookie( "username","",time()-60*60 );
+  header("Refresh: 0");
 }
 
 if( login_check() )
