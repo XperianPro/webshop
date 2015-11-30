@@ -12,9 +12,21 @@ function item_list()
   foreach( $list as $row )
   {
     echo '<tr><td>'.$row['name'].'</td><td>'.$row['number'].'</td><td>'.$row['price'].'</td><td>'.$row['prodano'].'</td>'; //stvari
-    echo '<td><form method="post"><button type="submit" value="'.$row['name'].'" name="kupi">Kupi!</button></form></td></tr>'; // gumb
+    echo '<td><form method="post"><button type="submit" value="'.$row['name'].'" name="kupi">Kupi!</button></form></td>'; // gumb
+    if ( $_COOKIE['username'] == "admin" )
+    {
+      echo '<td><form method="post"><button type="submit" value="'.$row['name'].'" name="izbrisi">Delete!</button></form></td></tr>'; //izbrisi
+    }
+    else {
+      echo "</tr>";
+    }
   }
   echo '</table>'; //kraj tablice
+  if ( $_COOKIE['username'] == "admin" )
+  {
+    echo '<br/><br/>';
+    echo '<form method="post">Stvar:<input type="text" name="name"/>Kolicina:<input type="text" name="number"/>Cijena:<input type="text" name="price"/>Prodano:<input type="text" name="prodano"/><input type="submit" name="dodaj" value="Dodaj"/></form>';
+  }
   echo '<br/><br/>
   <form method="POST">
   <input type="submit" name="logout" value="Odjava"/>
@@ -29,6 +41,20 @@ function kupi()
     $kol = $kol[0];
     db_query( "UPDATE items SET prodano=".($kol['prodano']+1)." WHERE name LIKE '".$_POST['kupi']."'" );
     db_query( "UPDATE items SET number=".($kol['number']-1)." WHERE name LIKE '".$_POST['kupi']."'" );
+    header( "Refresh: 0" );
+  }
+  if ( isset( $_POST['izbrisi']) )
+  {
+    db_query( "DELETE FROM items WHERE name LIKE '".$_POST['izbrisi']."'" );
+    header( "Refresh: 0" );
+  }
+  if ( isset( $_POST['name']) && isset( $_POST['number']) && isset( $_POST['price']) && isset( $_POST['prodano']) )
+  {
+    $stvar = $_POST['name'];
+    $kol = $_POST['number'];
+    $cijena = $_POST['price'];
+    $prodano = $_POST['prodano'];
+    db_query( "INSERT INTO items VALUES ( '$stvar','$cijena','$kol','$prodano' )" );
     header( "Refresh: 0" );
   }
 
