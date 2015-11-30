@@ -25,7 +25,7 @@ function item_list()
   if ( $_COOKIE['username'] == "admin" )
   {
     echo '<br/><br/>';
-    echo '<form method="post">Stvar:<input type="text" name="name"/>Kolicina:<input type="text" name="number"/>Cijena:<input type="text" name="price"/>Prodano:<input type="text" name="prodano"/><input type="submit" name="dodaj" value="dodaj"/></form>';
+    echo '<form method="post">Stvar:<input type="text" name="name"/>Kolicina:<input type="text" name="number"/>Cijena:<input type="text" name="price"/>Prodano:<input type="text" name="prodano"/><input type="submit" name="dodaj" value="Dodaj"/></form>';
   }
   echo '<br/><br/>
   <form method="POST">
@@ -55,6 +55,7 @@ function kupi()
     $cijena = $_POST['price'];
     $prodano = $_POST['prodano'];
     db_query( "INSERT INTO items VALUES ( '$stvar','$kol','$cijena','$prodano' )" );
+    header( "Refresh: 0" );
   }
 
 }
