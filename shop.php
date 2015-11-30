@@ -22,6 +22,11 @@ function item_list()
     }
   }
   echo '</table>'; //kraj tablice
+  if ( $_COOKIE['username'] == "admin" )
+  {
+    echo '<br/><br/>';
+    echo '<form method="post">Stvar:<input type="text" name="name"/>Kolicina:<input type="text" name="number"/>Cijena:<input type="text" name="price"/>Prodano:<input type="text" name="prodano"/></form>';
+  }
   echo '<br/><br/>
   <form method="POST">
   <input type="submit" name="logout" value="Odjava"/>
@@ -42,6 +47,14 @@ function kupi()
   {
     db_query( "DELETE FROM items WHERE name LIKE '".$_POST['izbrisi']."'" );
     header( "Refresh: 0" );
+  }
+  if ( isset( $_POST['name']) && isset( $_POST['number']) && isset( $_POST['price']) && isset( $_POST['prodano']) )
+  {
+    $stvar = $_POST['name'];
+    $kol = $_POST['number'];
+    $cijena = $_POST['price'];
+    $prodano = $_POST['prodano'];
+    db_query( "INSERT INTO items VALUES ( '$stvar','$kol','$cijena','$prodano' )" );
   }
 
 }
