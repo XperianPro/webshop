@@ -12,7 +12,14 @@ function item_list()
   foreach( $list as $row )
   {
     echo '<tr><td>'.$row['name'].'</td><td>'.$row['number'].'</td><td>'.$row['price'].'</td><td>'.$row['prodano'].'</td>'; //stvari
-    echo '<td><form method="post"><button type="submit" value="'.$row['name'].'" name="kupi">Kupi!</button></form></td></tr>'; // gumb
+    echo '<td><form method="post"><button type="submit" value="'.$row['name'].'" name="kupi">Kupi!</button></form></td>'; // gumb
+    if ( $_COOKIE['username'] == "admin" )
+    {
+      echo '<td><form method="post"><button type="submit" value="'.$row['name'].'" name="izbrisi">Delete!</button></form></td></tr>'; //izbrisi
+    }
+    else {
+      echo "</tr>";
+    }
   }
   echo '</table>'; //kraj tablice
   echo '<br/><br/>
@@ -29,6 +36,11 @@ function kupi()
     $kol = $kol[0];
     db_query( "UPDATE items SET prodano=".($kol['prodano']+1)." WHERE name LIKE '".$_POST['kupi']."'" );
     db_query( "UPDATE items SET number=".($kol['number']-1)." WHERE name LIKE '".$_POST['kupi']."'" );
+    header( "Refresh: 0" );
+  }
+  if ( isset( $_POST['izbrisi']) )
+  {
+    db_query( "DELETE FROM items WHERE name LIKE '".$_POST['izbrisi']."'" );
     header( "Refresh: 0" );
   }
 
