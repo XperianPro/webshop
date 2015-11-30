@@ -54,7 +54,7 @@ function kupi()
     $kol = $_POST['number'];
     $cijena = $_POST['price'];
     $prodano = $_POST['prodano'];
-    db_query( "INSERT INTO items VALUES ( '$stvar','$kol','$cijena','$prodano' )" );
+    db_query( "INSERT INTO items VALUES ( '$stvar','$cijena','$kol','$prodano' )" );
     header( "Refresh: 0" );
   }
 
